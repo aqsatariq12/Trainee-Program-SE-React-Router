@@ -10,19 +10,20 @@ import Navbar from "./Navbar";
 import Dashboard from "./pages/Dashboard";
 import ProductDetail from "./ProductDetail";
 import NotFound from "./NotFound";
-import Layout from "./Layout";
+import AppLayout from "./AppLayout";
 import ProtectedRoute from "./ProtectedRoute";
+import AuthLayout from "./AuthLayout";
+import Signup from "./pages/Signup";
 function App() {
   return (
     <>
       <Routes>
-        <Route element={<Layout />}>
+        <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
           <Route
             path="/dashboard"
             element={
@@ -31,6 +32,12 @@ function App() {
               </ProtectedRoute>
             }
           />
+        </Route>
+        <Route>
+          <Route element={<AuthLayout/>}>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/signup" element={<Signup/>}/>
+          </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
