@@ -1,16 +1,54 @@
-import { Outlet } from "react-router";
-import { Link } from "react-router";
+import { Link, Outlet } from "react-router-dom";
+import "./Products.css";
+
 function Products() {
+  const products = [
+    {
+      id: 1,
+      name: "Nike Shoes",
+      price: "$120",
+      image: "https://picsum.photos/250/180?random=1",
+    },
+    {
+      id: 2,
+      name: "Apple Watch",
+      price: "$299",
+      image: "https://picsum.photos/250/180?random=2",
+    },
+    {
+      id: 3,
+      name: "Laptop",
+      price: "$899",
+      image: "https://picsum.photos/250/180?random=3",
+    },
+    {
+      id: 4,
+      name: "Headphones",
+      price: "$99",
+      image: "https://picsum.photos/250/180?random=4",
+    },
+  ];
+
   return (
-    <div>
-      <h1>Products Page</h1>
+    <div className="products-container">
+      <h1>Our Products</h1>
 
-      {/* Product list */}
+      <div className="product-grid">
+        {products.map((product) => (
+          <div className="card" key={product.id}>
+            <img src={product.image} alt={product.name} />
 
-      <Outlet />
+            <h3>{product.name}</h3>
 
-        <Link to="/products/1">Product 1</Link>
-        <Link to="/products/2">Product 2</Link>
+            <p>{product.price}</p>
+
+            <Link to={`/products/${product.id}`} className="btn">
+              View Details
+            </Link>
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 }
